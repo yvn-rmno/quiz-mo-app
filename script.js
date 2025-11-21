@@ -2,24 +2,54 @@ const music = document.getElementById("bgMusic");
 
 const quiz = [
   {
-    q: "Which language runs in a web browser?",
-    options: ["Java", "C", "Python", "JavaScript"],
+    q: "Which keyword is used to declare a variable in JavaScript?",
+    options: ["var", "let", "const", "All of the above"],
     answer: 3
   },
   {
-    q: "Sino si Don Aldrich?",
+    q: "What does typeof NaN return?",
     options: [
-      "BADJAO",
-      "UGHH SARAP!",
-      "Mag-ggym",
-      "Masarap"
+      "number",
+      "NaN",
+      "undefined",
+      "object"
+    ],
+    answer: 0
+  },
+  {
+    q: "Which operator is used for equality without type coercion?",
+    options: ["==", "===", "=", "!="],
+    answer: 1
+  },
+  {
+    q: "How do you write a comment in JavaScript?",
+    options: [
+      " <!-- Comment -->",
+      " /* Comment */",
+      "// Comment",
+      "# Comment"
+    ],
+    answer: 2
+  },
+  {
+    q: "What is the output of console.log(0.1 + 0.2 === 0.3);?",
+    options: [
+      "true",
+      "false",
+      "undefined",
+      "TypeError"
     ],
     answer: 1
   },
   {
-    q: "What year was JavaScript created?",
-    options: ["1995", "2001", "1990", "1998"],
-    answer: 0
+    q: " Which method converts a JSON string to a JavaScript object?",
+    options: [
+      "true",
+      "false",
+      "undefined",
+      "TypeError"
+    ],
+    answer: 1
   }
 ];
 
@@ -31,7 +61,7 @@ let timerInterval;
 
 // Start Quiz
 function startQuiz() {
-  music.play();
+  //music.play();
   document.getElementById("startScreen").style.display = "none";
   document.getElementById("questionCard").style.display = "flex";
   loadQuestion();
@@ -40,7 +70,7 @@ function startQuiz() {
 // Load Question
 function loadQuestion() {
   startTimer();
-
+  music.play();
   const q = quiz[current];
   document.getElementById("questionText").innerText = q.q;
 

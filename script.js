@@ -9,7 +9,7 @@ const quiz = [
   {
     q: "Sino si Don Aldrich?",
     options: [
-      "Central Style Sheets",
+      "BADJAO",
       "UGHH SARAP!",
       "Mag-ggym",
       "Masarap"

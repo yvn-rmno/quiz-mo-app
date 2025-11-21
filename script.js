@@ -39,14 +39,18 @@ function startQuiz() {
 
 // Load Question
 function loadQuestion() {
-  let q = quiz[current];
+  startTimer();
+
+  const q = quiz[current];
   document.getElementById("questionText").innerText = q.q;
 
-  q.options.forEach((opt, i) => {
-    document.getElementById("opt" + i).innerText = opt;
-  });
+  const options = document.querySelectorAll(".option");
 
-  startTimer(); // start timer for every question
+  options.forEach((opt, index) => {
+    opt.innerText = q.options[index];
+    opt.classList.remove("correct", "wrong");
+    opt.style.pointerEvents = "auto";  // enable clicking again
+  });
 }
 
 // Start Timer
@@ -81,21 +85,37 @@ function startTimer() {
   }, 1000);
 }
 
-// Select Answer
-function selectAnswer(selected) {
+function selectAnswer(choice) {
   clearInterval(timerInterval);
 
-  if (selected === quiz[current].answer) {
+  const correctIndex = quiz[current].answer;
+  const options = document.querySelectorAll(".option");
+
+  // Disable clicking after answering
+  options.forEach(opt => opt.style.pointerEvents = "none");
+
+  // If correct answer selected
+  if (choice === correctIndex) {
     score++;
+    options[choice].classList.add("correct");
+  } 
+  else {
+    // Wrong answer
+    options[choice].classList.add("wrong");
+
+    // Highlight correct answer
+    options[correctIndex].classList.add("correct");
   }
 
-  current++;
-
-  if (current < quiz.length) {
-    loadQuestion();
-  } else {
-    showResult();
-  }
+  // Wait 1 second before going to next question
+  setTimeout(() => {
+    current++;
+    if (current < quiz.length) {
+      loadQuestion();
+    } else {
+      showResult();
+    }
+  }, 1000);
 }
 
 // Show Final Score
@@ -116,3 +136,4 @@ function restartQuiz() {
   document.getElementById("resultScreen").style.display = "none";
   document.getElementById("startScreen").style.display = "flex";
 }
+

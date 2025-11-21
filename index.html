@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kahoot-Style Quiz App</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body> <audio id="bgMusic" loop>
+    <source src="bgmusic.mp3" type="audio/mpeg">
+  </audio> <div class="container" id="startScreen">
+    <h1>QUIZ-MO</h1>
+    <button class="btn" onclick="startQuiz()">Start Quiz</button>
+  </div> <div class="container question-card" id="questionCard">
+    <h1 id="questionText"></h1>
+    <h2 id="timer"> Time: 10</h2>
+    <div class="options">
+      <div class="option" onclick="selectAnswer(0)" id="opt0"></div>
+      <div class="option" onclick="selectAnswer(1)" id="opt1"></div>
+      <div class="option" onclick="selectAnswer(2)" id="opt2"></div>
+      <div class="option" onclick="selectAnswer(3)" id="opt3"></div>
+    </div>
+  </div> <div class="container result" id="resultScreen">
+    <h1 id="resultText"></h1>
+    <button class="btn" onclick="restartQuiz()">Play Again</button>
+  </div> 
+  <script src = "script.js"></script>
+</body>
+</html>

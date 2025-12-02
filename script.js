@@ -7,76 +7,93 @@ const quiz = [
 {
     q: "Which keyword is used to declare a variable in JavaScript?",
     options: ["var", "let", "const", "All of the above"],
-    answer: 3
-  },
-  {
-    q: "What does typeof NaN return?",
-    options: [
-      "number", // Correct: typeof NaN is 'number'
-      "NaN",
-      "undefined",
-      "object"
-    ],
-    answer: 0
-  },
-  {
-    q: "Which operator is used for equality without type coercion?",
-    options: ["==", "===", "=", "!="],
-    answer: 1
-  },
-  {
-    q: "How do you write a comment in JavaScript?",
-    options: [
-      " Comment ",
-      " /* Comment */",
-      "// Comment", // Correct for single-line comments
-      "# Comment"
-    ],
-    answer: 2
-  },
-  {
-    q: "What is the output of console.log(0.1 + 0.2 === 0.3);?",
-    options: [
-      "true",
-      "false", // Correct due to floating point precision
-      "undefined",
-      "TypeError"
-    ],
-    answer: 1
-  },
-  {
-    q: "Which method converts a JSON string to a JavaScript object?",
-    // 🛑 FIX: Corrected options for this question
-    options: [
-      "JSON.stringify()",
-      "JSON.parse()", // Correct method
-      "Object.convert()",
-      "String.toObject()"
-    ],
-    answer: 1
-   },
-    {
-    q: "Which method converts a JSON string to a JavaScript object?",
-    // 🛑 FIX: Corrected options for this question
-    options: [
-      "JSON.stringify()",
-      "JSON.parse()", // Correct method
-      "Object.convert()",
-      "String.toObject()"
-    ],
-    answer: 1
-  },
-  {
-    q: "Which method converts a JSON string to a JavaScript object?",
-    // 🛑 FIX: Corrected options for this question
-    options: [
-      "JSON.stringify()",
-      "JSON.parse()", // Correct method
-      "Object.convert()",
-      "String.toObject()"
-    ],
-    answer: 1
-  }
+    answer: 3
+},
+{
+    q: "What does typeof NaN return?",
+    options: [
+        "number",
+        "NaN",
+        "undefined",
+        "object"
+    ],
+    answer: 0
+},
+{
+    q: "Which operator is used for equality without type coercion?",
+    options: ["==", "===", "=", "!="],
+    answer: 1
+},
+{
+    q: "How do you write a comment in JavaScript?",
+    options: [
+        " Comment ",
+        " /* Comment */",
+        "// Comment",
+        "# Comment"
+    ],
+    answer: 2
+},
+{
+    q: "What is the output of console.log(0.1 + 0.2 === 0.3);?",
+    options: [
+        "true",
+        "false",
+        "undefined",
+        "TypeError"
+    ],
+    answer: 1
+},
+{
+    q: "Which method converts a JSON string to a JavaScript object?",
+    options: [
+        "JSON.stringify()",
+        "JSON.parse()",
+        "Object.convert()",
+        "String.toObject()"
+    ],
+    answer: 1
+},
+{
+    q: "Which data type in Python is an ordered, immutable sequence of elements?",
+    options: [
+    "tuple",
+    "list",
+    "set",
+    "dictionary"
+    ],
+  answer: 0
+},
+{
+    q: "What is the correct signature for the main method in a standard Java application?",
+    options: [
+    "public static int main(String[] args)",
+    "private static void main(String[] args)",
+    "public static void main(String args[])",
+    "public void main(String[] args)"
+    ],
+  answer: 2
+},
+{
+    q: "In Python, which built-in function is used to print output to the console?",
+    options: [
+    "write()",
+    "printf()",
+    "console.log()",
+    "print()"
+    ],
+  answer: 3
+},
+{
+    q: "What is the primary purpose of the semicolon (;) at the end of a statement in Java?",
+    options: [
+    "To define a code block",
+    "To denote a comment",
+    "To mark the end of a statement",
+    "To declare a variable"
+    ],
+  answer: 2
+},
 ];
 
 let current = 0;
@@ -147,144 +164,144 @@ function displayHighScores(resultMessage) {
 
 // Start Quiz (no change)
 function startQuiz() {
-  //music.play();
-  document.getElementById("startScreen").style.display = "none";
-  document.getElementById("questionCard").style.display = "flex";
-  loadQuestion();
+ //music.play();
+ document.getElementById("startScreen").style.display = "none";
+ document.getElementById("questionCard").style.display = "flex";
+ loadQuestion();
 }
 
 // Tutorial (no change)
 function tutorial() {
-  clearInterval(timerInterval); 
-  alert("📚 QUIZ-MO Tutorial 📚\n\n" +
-    "1. **Goal:** Answer all questions correctly to maximize your score.\n" +
-    "2. **Time Limit:** You have 10 seconds to answer each question.\n" +
-    "3. **Scoring:** You earn 1 point for each correct answer.\n" +
-    "4. **Feedback:** Correct answers turn green, and incorrect answers turn red (showing the correct one).\n\n" +
-    "Good luck!");
+ clearInterval(timerInterval); 
+ alert("📚 QUIZ-MO Tutorial 📚\n\n" +
+  "1. **Goal:** Answer all questions correctly to maximize your score.\n" +
+  "2. **Time Limit:** You have 10 seconds to answer each question.\n" +
+  "3. **Scoring:** You earn 1 point for each correct answer.\n" +
+  "4. **Feedback:** Correct answers turn green, and incorrect answers turn red (showing the correct one).\n\n" +
+  "Good luck!");
 
-    if (document.getElementById("questionCard").style.display === "flex") {
-      startTimer(); 
-    }
+  if (document.getElementById("questionCard").style.display === "flex") {
+   startTimer(); 
+  }
 }
 
 // Exit Game (MODIFIED to call displayHighScores)
 function exit() {
-  clearInterval(timerInterval);
-  music.pause();
-  music.currentTime = 0;
+ clearInterval(timerInterval);
+ music.pause();
+ music.currentTime = 0;
 
-  document.getElementById("startScreen").style.display = "none";
-  document.getElementById("questionCard").style.display = "none";
-  document.getElementById("resultScreen").style.display = "flex";
+ document.getElementById("startScreen").style.display = "none";
+ document.getElementById("questionCard").style.display = "none";
+ document.getElementById("resultScreen").style.display = "flex";
 
-  // Call the new function to show "Game Quit" and the high score list
-  displayHighScores("Game Quit. Thanks for playing!");
+ // Call the new function to show "Game Quit" and the high score list
+ displayHighScores("Game Quit. Thanks for playing!");
 }
 
 // Load Question (no change)
 function loadQuestion() {
-  startTimer();
-  music.play();
-  const q = quiz[current];
-  document.getElementById("questionText").innerText = q.q;
+ startTimer();
+ music.play();
+ const q = quiz[current];
+ document.getElementById("questionText").innerText = q.q;
 
-  const options = document.querySelectorAll(".option");
+ const options = document.querySelectorAll(".option");
 
-  options.forEach((opt, index) => {
-    opt.innerText = q.options[index];
-    opt.classList.remove("correct", "wrong");
-    opt.style.pointerEvents = "auto";  // enable clicking again
-  });
+ options.forEach((opt, index) => {
+  opt.innerText = q.options[index];
+  opt.classList.remove("correct", "wrong");
+  opt.style.pointerEvents = "auto"; // enable clicking again
+ });
 }
 
 // Start Timer (no change)
 function startTimer() {
-  clearInterval(timerInterval);
-  timeLeft = 10;
-  const timerEl = document.getElementById("timer");
+ clearInterval(timerInterval);
+ timeLeft = 10;
+ const timerEl = document.getElementById("timer");
 
-  timerEl.innerText = "Time: " + timeLeft;
-  timerEl.classList.remove("shake"); // make sure shake is removed at start
+ timerEl.innerText = "Time: " + timeLeft;
+ timerEl.classList.remove("shake"); // make sure shake is removed at start
 
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    timerEl.innerText = "Time: " + timeLeft;
+ timerInterval = setInterval(() => {
+  timeLeft--;
+  timerEl.innerText = "Time: " + timeLeft;
 
-    // When timer is 3 seconds or less → shake!
-    if (timeLeft <= 3) {
-      timerEl.classList.add("shake");
-    }
+  // When timer is 3 seconds or less → shake!
+  if (timeLeft <= 3) {
+   timerEl.classList.add("shake");
+  }
 
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      timerEl.classList.remove("shake"); // stop shaking after time ends
+  if (timeLeft <= 0) {
+   clearInterval(timerInterval);
+   timerEl.classList.remove("shake"); // stop shaking after time ends
 
-      current++; // move to next question
-      if (current < quiz.length) {
-        loadQuestion();
-      } else {
-        showResult();
-      }
-    }
-  }, 1000);
+   current++; // move to next question
+   if (current < quiz.length) {
+    loadQuestion();
+   } else {
+    showResult();
+   }
+  }
+ }, 1000);
 }
 
 // Select Answer (no change)
 function selectAnswer(choice) {
-  clearInterval(timerInterval);
+ clearInterval(timerInterval);
 
-  const correctIndex = quiz[current].answer;
-  const options = document.querySelectorAll(".option");
+ const correctIndex = quiz[current].answer;
+ const options = document.querySelectorAll(".option");
 
-  // Disable clicking after answering
-  options.forEach(opt => opt.style.pointerEvents = "none");
+ // Disable clicking after answering
+ options.forEach(opt => opt.style.pointerEvents = "none");
 
-  // If correct answer selected
-  if (choice === correctIndex) {
-    score++;
-    options[choice].classList.add("correct");
-  } 
-  else {
-    // Wrong answer
-    options[choice].classList.add("wrong");
+ // If correct answer selected
+ if (choice === correctIndex) {
+  score++;
+  options[choice].classList.add("correct");
+ } 
+ else {
+  // Wrong answer
+  options[choice].classList.add("wrong");
 
-    // Highlight correct answer
-    options[correctIndex].classList.add("correct");
-  }
+  // Highlight correct answer
+  options[correctIndex].classList.add("correct");
+ }
 
-  // Wait 1 second before going to next question
-  setTimeout(() => {
-    current++;
-    if (current < quiz.length) {
-      loadQuestion();
-    } else {
-      showResult();
-    }
-  }, 1000);
+ // Wait 1 second before going to next question
+ setTimeout(() => {
+  current++;
+  if (current < quiz.length) {
+   loadQuestion();
+  } else {
+   showResult();
+  }
+ }, 1000);
 }
 
 // Show Final Score (MODIFIED to stop music and call displayHighScores)
 function showResult() {
-  music.pause();
-  music.currentTime = 0;
+ music.pause();
+ music.currentTime = 0;
     
-  document.getElementById("questionCard").style.display = "none";
-  document.getElementById("resultScreen").style.display = "flex";
+ document.getElementById("questionCard").style.display = "none";
+ document.getElementById("resultScreen").style.display = "flex";
 
-  // Call the new function to save score and display the high score list
-  displayHighScores("Your Score: " + score + " / " + quiz.length);
+ // Call the new function to save score and display the high score list
+ displayHighScores("Your Score: " + score + " / " + quiz.length);
 }
 
 // Restart (MODIFIED to stop music)
 function restartQuiz() {
-  current = 0;
-  score = 0;
-  clearInterval(timerInterval);
+ current = 0;
+ score = 0;
+ clearInterval(timerInterval);
 
-  music.pause();
-  music.currentTime = 0;
+ music.pause();
+ music.currentTime = 0;
 
-  document.getElementById("resultScreen").style.display = "none";
-  document.getElementById("startScreen").style.display = "flex";
+ document.getElementById("resultScreen").style.display = "none";
+ document.getElementById("startScreen").style.display = "flex";
 }

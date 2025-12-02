@@ -104,8 +104,8 @@ function displayHighScores(resultMessage) {
         highScores.forEach((entry, index) => {
             // Using a simple list structure for display
             highScoresHTML += `<li style="background: rgba(255, 255, 255, 0.1); padding: 10px; margin-bottom: 8px; border-radius: 8px; display: flex; justify-content: space-between;">
-                                <span>**#${index + 1}** | Score: ${entry.score} / ${quiz.length}</span>
-                                <span>*${entry.date}*</span>
+                                <span>#${index + 1} | Score: ${entry.score} / ${quiz.length}</span>
+                                <span>${entry.date}</span>
                               </li>`;
         });
     } else {

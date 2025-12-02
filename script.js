@@ -176,10 +176,10 @@ function startQuiz() {
 function tutorial() {
  clearInterval(timerInterval); 
  alert("📚 QUIZ-MO Tutorial 📚\n\n" +
-  "1. **Goal:** Answer all questions correctly to maximize your score.\n" +
-  "2. **Time Limit:** You have 10 seconds to answer each question.\n" +
-  "3. **Scoring:** You earn 1 point for each correct answer.\n" +
-  "4. **Feedback:** Correct answers turn green, and incorrect answers turn red (showing the correct one).\n\n" +
+  "1. Goal: Answer all questions correctly to maximize your score.\n" +
+  "2. Time Limit: You have 10 seconds to answer each question.\n" +
+  "3. Scoring: You earn 1 point for each correct answer.\n" +
+  "4. Feedback: Correct answers turn green, and incorrect answers turn red (showing the correct one).\n\n" +
   "Good luck!");
 
   if (document.getElementById("questionCard").style.display === "flex") {

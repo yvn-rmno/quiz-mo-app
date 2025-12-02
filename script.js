@@ -1,3 +1,5 @@
+const correctSound = document.getElementById("correctSound");
+const wrongSound = document.getElementById("wrongSound");
 const music = document.getElementById("bgMusic");
 
 // New: Constant for Local Storage key
@@ -274,16 +276,21 @@ function selectAnswer(choice) {
 
  // If correct answer selected
  if (choice === correctIndex) {
-  score++;
-  options[choice].classList.add("correct");
- } 
- else {
-  // Wrong answer
-  options[choice].classList.add("wrong");
+    score++;
+    options[choice].classList.add("correct");
 
-  // Highlight correct answer
-  options[correctIndex].classList.add("correct");
- }
+    // Play correct sound
+    correctSound.currentTime = 0;
+    correctSound.play();
+}
+else {
+    options[choice].classList.add("wrong");
+    options[correctIndex].classList.add("correct");
+
+    // Play wrong sound
+    wrongSound.currentTime = 0;
+    wrongSound.play();
+}
 
  // Wait 1 second before going to next question
  setTimeout(() => {

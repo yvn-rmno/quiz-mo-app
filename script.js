@@ -1,5 +1,6 @@
 const correctSound = document.getElementById("correctSound");
 const wrongSound = document.getElementById("wrongSound");
+const resultSound = document.getElementById("resultSound");
 const music = document.getElementById("bgMusic");
 
 // New: Constant for Local Storage key
@@ -307,6 +308,9 @@ else {
 function showResult() {
  music.pause();
  music.currentTime = 0;
+
+ resultSound.currentTime = 0;
+ resultSound.play();
     
  document.getElementById("questionCard").style.display = "none";
  document.getElementById("resultScreen").style.display = "flex";

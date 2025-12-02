@@ -4,9 +4,9 @@ const music = document.getElementById("bgMusic");
 const HIGH_SCORES_KEY = 'quizMoHighScores';
 
 const quiz = [
-  {
-    q: "Which keyword is used to declare a variable in JavaScript?",
-    options: ["var", "let", "const", "All of the above"],
+{
+    q: "Which keyword is used to declare a variable in JavaScript?",
+    options: ["var", "let", "const", "All of the above"],
     answer: 3
   },
   {
@@ -27,7 +27,7 @@ const quiz = [
   {
     q: "How do you write a comment in JavaScript?",
     options: [
-      " ",
+      " Comment ",
       " /* Comment */",
       "// Comment", // Correct for single-line comments
       "# Comment"
@@ -45,6 +45,28 @@ const quiz = [
     answer: 1
   },
   {
+    q: "Which method converts a JSON string to a JavaScript object?",
+    // 🛑 FIX: Corrected options for this question
+    options: [
+      "JSON.stringify()",
+      "JSON.parse()", // Correct method
+      "Object.convert()",
+      "String.toObject()"
+    ],
+    answer: 1
+   },
+    {
+    q: "Which method converts a JSON string to a JavaScript object?",
+    // 🛑 FIX: Corrected options for this question
+    options: [
+      "JSON.stringify()",
+      "JSON.parse()", // Correct method
+      "Object.convert()",
+      "String.toObject()"
+    ],
+    answer: 1
+  },
+  {
     q: "Which method converts a JSON string to a JavaScript object?",
     // 🛑 FIX: Corrected options for this question
     options: [

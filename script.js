@@ -164,7 +164,6 @@ function displayHighScores(resultMessage) {
 
 // Start Quiz (no change)
 function startQuiz() {
- //music.play();
  document.getElementById("startScreen").style.display = "none";
  document.getElementById("questionCard").style.display = "flex";
  loadQuestion();
@@ -215,36 +214,52 @@ function loadQuestion() {
  });
 }
 
-// Start Timer (no change)
 function startTimer() {
- clearInterval(timerInterval);
- timeLeft = 10;
- const timerEl = document.getElementById("timer");
+  clearInterval(timerInterval);
+  timeLeft = 10;
 
- timerEl.innerText = "Time: " + timeLeft;
- timerEl.classList.remove("shake"); // make sure shake is removed at start
+  const timerEl = document.getElementById("timer");
+  const bar = document.getElementById("timerBar");
 
- timerInterval = setInterval(() => {
-  timeLeft--;
+  // Reset text
   timerEl.innerText = "Time: " + timeLeft;
+  timerEl.classList.remove("shake");
 
-  // When timer is 3 seconds or less → shake!
-  if (timeLeft <= 3) {
-   timerEl.classList.add("shake");
-  }
+  // Reset bar instantly
+  bar.style.transition = "none";
+  bar.style.width = "100%";
+  bar.classList.remove("timer-warning");
 
-  if (timeLeft <= 0) {
-   clearInterval(timerInterval);
-   timerEl.classList.remove("shake"); // stop shaking after time ends
+  // Begin animation after reset applies
+  setTimeout(() => {
+    bar.style.transition = "width 10s linear";
+    bar.style.width = "0%";
+  }, 50);
 
-   current++; // move to next question
-   if (current < quiz.length) {
-    loadQuestion();
-   } else {
-    showResult();
-   }
-  }
- }, 1000);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    timerEl.innerText = "Time: " + timeLeft;
+
+    // Under 3 seconds → shake + red bar
+    if (timeLeft <= 3) {
+      timerEl.classList.add("shake");
+      bar.classList.add("timer-warning");
+    }
+
+    // Timer finished
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      timerEl.classList.remove("shake");
+      bar.classList.remove("timer-warning");
+
+      current++;
+      if (current < quiz.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+  }, 1000);
 }
 
 // Select Answer (no change)
@@ -304,4 +319,22 @@ function restartQuiz() {
 
  document.getElementById("resultScreen").style.display = "none";
  document.getElementById("startScreen").style.display = "flex";
+}
+
+function showScreen(screenId) {
+    const screens = document.querySelectorAll('.container');
+    
+    screens.forEach(screen => {
+        screen.classList.add('fade-out');
+        setTimeout(() => {
+            screen.style.display = "none";
+        }, 400);
+    });
+
+    setTimeout(() => {
+        const screen = document.getElementById(screenId);
+        screen.style.display = "flex";
+        screen.classList.remove('fade-out');
+        screen.classList.add('fade-in');
+    }, 450);
 }

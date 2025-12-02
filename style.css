@@ -67,6 +67,7 @@ h1 {
   border: none;
   margin-top: 20px;
   transition: 0.3s;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
 .btnred {
@@ -79,23 +80,29 @@ h1 {
   border: none;
   margin-top: 20px;
   transition: 0.3s;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
 .btn:hover {
   background: #059669;
   transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
 .btnred:hover {
   background: rgb(233, 23, 69);
   transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
 .question-card {
-  display: none;
-  flex-direction: column;
-  gap: 20px;
-  animation: fadeIn 0.5s ease;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
 }
 
 .options {
@@ -136,4 +143,90 @@ h1 {
   background: #ef4444 !important;   /* red */
   box-shadow: 0 0 20px #ef4444;
   transform: scale(1.05);
+}
+
+/* --- Animated Timer Bar --- */
+.timer-container {
+  width: 80%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.timer-bar {
+  width: 100%;
+  height: 100%;
+  background: #22d3ee;
+  border-radius: 10px;
+  transition: width linear;
+}
+
+.timer-warning {
+  background: #ef4444 !important;
+  animation: shake 0.4s ease-in-out infinite;
+}
+
+/* Smooth page transition */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* Floating stars animation */
+.floating-stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* RANDOM STARFIELD WITH FLOATING EFFECT */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #1a0033;
+  overflow: hidden;
+  animation: star-animation 120s linear infinite;
+
+  background-image:
+    /* Large stars */
+    radial-gradient(8px 8px at 10% 20%, white, transparent),
+    radial-gradient(7px 7px at 80% 40%, white, transparent),
+    radial-gradient(6px 6px at 30% 75%, white, transparent),
+    radial-gradient(8px 8px at 55% 90%, white, transparent),
+
+    /* Medium stars */
+    radial-gradient(4px 4px at 25% 50%, white, transparent),
+    radial-gradient(5px 5px at 60% 15%, white, transparent),
+    radial-gradient(4px 4px at 75% 85%, white, transparent),
+    radial-gradient(5px 5px at 40% 30%, white, transparent),
+
+    /* Small stars */
+    radial-gradient(2px 2px at 15% 85%, white, transparent),
+    radial-gradient(2px 2px at 90% 70%, white, transparent),
+    radial-gradient(3px 3px at 45% 10%, white, transparent),
+    radial-gradient(2px 2px at 70% 55%, white, transparent);
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* FLOAT / PARALLAX MOTION */
+@keyframes star-animation {
+  0%   { background-position: 0px 0px; }
+  50%  { background-position: 800px 600px; }
+  100% { background-position: 0px 0px; }
 }

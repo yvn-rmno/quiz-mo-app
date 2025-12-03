@@ -3,7 +3,6 @@ const wrongSound = document.getElementById("wrongSound");
 const resultSound = document.getElementById("resultSound");
 const music = document.getElementById("bgMusic");
 
-// New: Constant for Local Storage key
 const HIGH_SCORES_KEY = 'quizMoHighScores';
 
 const quiz = [
@@ -106,45 +105,34 @@ let timeLeft = 10;
 let timerInterval;
 
 // --- HIGH SCORE FUNCTIONS ---
-
-/** Safely retrieves high scores from Local Storage, returns array or empty array. */
 function getHighScores() {
     const scoresJSON = localStorage.getItem(HIGH_SCORES_KEY);
     return scoresJSON ? JSON.parse(scoresJSON) : [];
 }
 
-/** Saves a new score, sorts the list, and keeps only the top 5. */
+/** Saves a new score function */
 function saveHighScore(newScore) {
     const scores = getHighScores();
-    
-    // Create score object with the score and current date
+
     const newEntry = { score: newScore, date: new Date().toLocaleDateString() };
     scores.push(newEntry);
     
-    // Sort scores from highest to lowest
     scores.sort((a, b) => b.score - a.score);
     
-    // Keep only the top 5 scores
     const topScores = scores.slice(0, 5); 
-    
-    // Save back to Local Storage
     localStorage.setItem(HIGH_SCORES_KEY, JSON.stringify(topScores));
 }
 
-/** Updates the result screen with the final score and the high score list. */
 function displayHighScores(resultMessage) {
-    // Save the current score only if the quiz was completed (not quit)
     if (resultMessage.includes("Your Score")) {
         saveHighScore(score);
     }
 
     const highScores = getHighScores();
     
-    // Build the high score list HTML
     let highScoresHTML = '<h3>🏆 Top Scores 🏆</h3><ul style="list-style: none; padding: 0;">';
     if (highScores.length > 0) {
         highScores.forEach((entry, index) => {
-            // Using a simple list structure for display
             highScoresHTML += `<li style="background: rgba(255, 255, 255, 0.1); padding: 10px; margin-bottom: 8px; border-radius: 8px; display: flex; justify-content: space-between;">
                                 <span>#${index + 1} | Score: ${entry.score} / ${quiz.length}</span>
                                 <span>${entry.date}</span>
@@ -155,24 +143,21 @@ function displayHighScores(resultMessage) {
     }
     highScoresHTML += '</ul>';
 
-    // Update the result screen text using innerHTML
     document.getElementById("resultText").innerHTML = `
         ${resultMessage}
         <hr>
         ${highScoresHTML}
     `;
-}
+}-
 
-// --- GAME FLOW FUNCTIONS ---
-
-// Start Quiz (no change)
+// Start Quiz
 function startQuiz() {
  document.getElementById("startScreen").style.display = "none";
  document.getElementById("questionCard").style.display = "flex";
  loadQuestion();
 }
 
-// Tutorial (no change)
+// Tutorial
 function tutorial() {
  clearInterval(timerInterval); 
  alert("📚 QUIZ-MO Tutorial 📚\n\n" +
@@ -187,7 +172,7 @@ function tutorial() {
   }
 }
 
-// Exit Game (MODIFIED to call displayHighScores)
+// Exit Game (MODIFIED)
 function exit() {
  clearInterval(timerInterval);
  music.pause();
@@ -197,11 +182,10 @@ function exit() {
  document.getElementById("questionCard").style.display = "none";
  document.getElementById("resultScreen").style.display = "flex";
 
- // Call the new function to show "Game Quit" and the high score list
  displayHighScores("Game Quit. Thanks for playing!");
 }
 
-// Load Question (no change)
+// Load Question
 function loadQuestion() {
  startTimer();
  music.play();
@@ -213,7 +197,7 @@ function loadQuestion() {
  options.forEach((opt, index) => {
   opt.innerText = q.options[index];
   opt.classList.remove("correct", "wrong");
-  opt.style.pointerEvents = "auto"; // enable clicking again
+  opt.style.pointerEvents = "auto"; 
  });
 }
 
@@ -265,7 +249,7 @@ function startTimer() {
   }, 1000);
 }
 
-// Select Answer (no change)
+// Select Answer
 function selectAnswer(choice) {
  clearInterval(timerInterval);
 
@@ -304,7 +288,7 @@ else {
  }, 1000);
 }
 
-// Show Final Score (MODIFIED to stop music and call displayHighScores)
+// Show Final Score (MODIFIED)
 function showResult() {
  music.pause();
  music.currentTime = 0;
@@ -319,7 +303,7 @@ function showResult() {
  displayHighScores("Your Score: " + score + " / " + quiz.length);
 }
 
-// Restart (MODIFIED to stop music)
+// Restart (MODIFIED)
 function restartQuiz() {
  current = 0;
  score = 0;
